@@ -8,9 +8,7 @@ use rand::{seq::SliceRandom, thread_rng, Rng};
 #[derive(Clone, Debug)]
 enum CardSuit {
     Spade,
-    Diamond,
     Heart,
-    Club,
 }
 
 impl Display for CardSuit {
@@ -26,8 +24,6 @@ impl Display for CardSuit {
             match self {
                 Spade => '♠',
                 Heart => '♥',
-                Diamond => '♦',
-                Club => '♣',
             }
         )
     }
@@ -37,8 +33,6 @@ impl Display for CardSuit {
 enum CardFace {
     Number(i8),
     Jack,
-    Queen,
-    King,
     Ace,
 }
 
@@ -54,8 +48,6 @@ impl Display for CardFace {
             "{}",
             match self {
                 Ace => "A".into(),
-                King => "K".into(),
-                Queen => "Q".into(),
                 Jack => "J".into(),
                 Number(n) => n.to_string(),
             }
@@ -85,7 +77,7 @@ fn main() {
     {
         use CardSuit::*;
 
-        for suit in [Spade, Heart, Diamond, Club] {
+        for suit in [Spade, Heart] {
             for n in 2..=10 {
                 deck.push(Card {
                     suit: suit.clone(),
@@ -95,7 +87,7 @@ fn main() {
 
             use CardFace::*;
 
-            for face in [Jack, Queen, King, Ace] {
+            for face in [Jack, Ace] {
                 deck.push(Card {
                     suit: suit.clone(),
                     face,
